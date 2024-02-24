@@ -1,9 +1,10 @@
-package com.dailycodebuffer.jwt.controller;
+package com.mcg.customerintelligence.pruebatecnica.controller;
 
-import com.dailycodebuffer.jwt.model.JwtRequest;
-import com.dailycodebuffer.jwt.model.JwtResponse;
-import com.dailycodebuffer.jwt.service.UserService;
-import com.dailycodebuffer.jwt.utility.JWTUtility;
+import com.mcg.customerintelligence.pruebatecnica.feign.JsonPlaceholderClient;
+import com.mcg.customerintelligence.pruebatecnica.jwt.model.JwtRequest;
+import com.mcg.customerintelligence.pruebatecnica.jwt.model.JwtResponse;
+import com.mcg.customerintelligence.pruebatecnica.jwt.service.UserService;
+import com.mcg.customerintelligence.pruebatecnica.jwt.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HomeController {
 
+
+    @Autowired
+    private final JsonPlaceholderClient jsonPlaceholderClient;
     @Autowired
     private JWTUtility jwtUtility;
 
@@ -26,13 +30,19 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    public HomeController(JsonPlaceholderClient jsonPlaceholderClient) {
+        this.jsonPlaceholderClient = jsonPlaceholderClient;
+    }
+
+
     @GetMapping("/")
     public String home() {
         return "Welcome to Daily Code Buffer!!";
     }
 
     @PostMapping("/authenticate")
-    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception{
+    public JwtResponse authenticate(@RequestBody JwtRequest jwtRequest) throws Exception {
 
         try {
             authenticationManager.authenticate(
@@ -51,6 +61,8 @@ public class HomeController {
         final String token =
                 jwtUtility.generateToken(userDetails);
 
-        return  new JwtResponse(token);
+        return new JwtResponse(token);
     }
 }
+
+
