@@ -1,4 +1,4 @@
-package com.mcg.customerintelligence.pruebatecnica.jwt.utility;
+package com.dailycodebuffer.jwt.utility;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

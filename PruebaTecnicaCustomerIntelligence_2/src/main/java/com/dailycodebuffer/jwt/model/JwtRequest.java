@@ -1,4 +1,4 @@
-package com.mcg.customerintelligence.pruebatecnica.jwt.model;
+package com.dailycodebuffer.jwt.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

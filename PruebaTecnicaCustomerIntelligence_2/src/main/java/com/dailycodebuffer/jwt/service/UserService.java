@@ -1,4 +1,4 @@
-package com.mcg.customerintelligence.pruebatecnica.jwt.service;
+package com.dailycodebuffer.jwt.service;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

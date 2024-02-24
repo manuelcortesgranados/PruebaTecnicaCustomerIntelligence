@@ -1,9 +1,9 @@
-package com.mcg.customerintelligence.pruebatecnica.jwt.controller;
+package com.dailycodebuffer.jwt.controller;
 
-import com.mcg.customerintelligence.pruebatecnica.jwt.model.JwtRequest;
-import com.mcg.customerintelligence.pruebatecnica.jwt.model.JwtResponse;
-import com.mcg.customerintelligence.pruebatecnica.jwt.service.UserService;
-import com.mcg.customerintelligence.pruebatecnica.jwt.utility.JWTUtility;
+import com.dailycodebuffer.jwt.model.JwtRequest;
+import com.dailycodebuffer.jwt.model.JwtResponse;
+import com.dailycodebuffer.jwt.service.UserService;
+import com.dailycodebuffer.jwt.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,7 +28,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "M Cortes Granados Technical Assessment tested successfully";
+        return "Welcome to Daily Code Buffer!!";
     }
 
     @PostMapping("/authenticate")

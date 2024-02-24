@@ -1,9 +1,10 @@
-package com.mcg.customerintelligence.pruebatecnica.jwt.filter;
+package com.dailycodebuffer.jwt.filter;
 
-import com.mcg.customerintelligence.pruebatecnica.jwt.service.UserService;
-import com.mcg.customerintelligence.pruebatecnica.jwt.utility.JWTUtility;
+import com.dailycodebuffer.jwt.service.UserService;
+import com.dailycodebuffer.jwt.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
