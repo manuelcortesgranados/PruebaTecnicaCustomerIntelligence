@@ -2,10 +2,7 @@ package com.customerintelligence.mcg.pruebatecnica.controller;
 
 
 import com.customerintelligence.mcg.pruebatecnica.feign.JsonPlaceholderClient;
-import com.customerintelligence.mcg.pruebatecnica.model.Album;
-import com.customerintelligence.mcg.pruebatecnica.model.Comment;
-import com.customerintelligence.mcg.pruebatecnica.model.Photo;
-import com.customerintelligence.mcg.pruebatecnica.model.Post;
+import com.customerintelligence.mcg.pruebatecnica.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -107,6 +104,29 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
         try {
             List<Photo> l_photos = jsonPlaceholderClient.getPhotos();
             return ResponseEntity.ok(l_photos);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return ResponseEntity.notFound().build();
+            }
+            // Handle other client errors
+            return ResponseEntity.status(e.getStatusCode()).body(null);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 25 Febrero 2024 4:20 AM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    @GetMapping("/todo")
+    public ResponseEntity<List<Todo>> getTodos() {
+        try {
+            List<Todo> l_todos = jsonPlaceholderClient.getTodos();
+            return ResponseEntity.ok(l_todos);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
                 return ResponseEntity.notFound().build();
