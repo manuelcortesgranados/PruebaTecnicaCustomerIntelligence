@@ -1,8 +1,8 @@
-package com.customerintelligence.mcg.pruebatecnica.pco_02;
+package com.customerintelligence.mcg.pruebatecnica.pco.pco_02;
 
 
-import com.customerintelligence.mcg.pruebatecnica.pco_01.JsonPlaceholderClient;
-import com.customerintelligence.mcg.pruebatecnica.pco_01.Post;
+import com.customerintelligence.mcg.pruebatecnica.feign.JsonPlaceholderClient;
+import com.customerintelligence.mcg.pruebatecnica.model.Post;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

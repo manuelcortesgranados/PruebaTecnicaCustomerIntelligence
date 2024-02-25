@@ -1,5 +1,7 @@
-package com.customerintelligence.mcg.pruebatecnica.pco_01;
+package com.customerintelligence.mcg.pruebatecnica.pco.pco_01;
 
+import com.customerintelligence.mcg.pruebatecnica.feign.JsonPlaceholderClient;
+import com.customerintelligence.mcg.pruebatecnica.model.Post;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,7 +16,7 @@ public class PostController {
         this.jsonPlaceholderClient = jsonPlaceholderClient;
     }
 
-    @GetMapping("/posts")
+    @GetMapping("/posts_2")
     public List<Post> getPosts() {
         return jsonPlaceholderClient.getPosts();
     }

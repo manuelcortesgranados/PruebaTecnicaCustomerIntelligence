@@ -1,4 +1,4 @@
-package com.customerintelligence.mcg.pruebatecnica.pco_01;
+package com.customerintelligence.mcg.pruebatecnica.model;
 
 public class Post {
     private Long id;
