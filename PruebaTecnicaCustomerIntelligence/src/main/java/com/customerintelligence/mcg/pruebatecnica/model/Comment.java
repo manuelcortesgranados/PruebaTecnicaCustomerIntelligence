@@ -1,5 +1,6 @@
 package com.customerintelligence.mcg.pruebatecnica.model;
 
+
 public class Comment {
 
     Long postId;

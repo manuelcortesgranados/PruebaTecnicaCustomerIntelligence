@@ -2,6 +2,7 @@ package com.customerintelligence.mcg.pruebatecnica.feign;
 
 import com.customerintelligence.mcg.pruebatecnica.model.Album;
 import com.customerintelligence.mcg.pruebatecnica.model.Comment;
+import com.customerintelligence.mcg.pruebatecnica.model.Photo;
 import com.customerintelligence.mcg.pruebatecnica.model.Post;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,5 +48,8 @@ public interface JsonPlaceholderClient {
 
     @GetMapping("/albums")
     List<Album> getAlbums();
+
+    @GetMapping("/photos")
+    List<Photo> getPhotos();
 
 }
