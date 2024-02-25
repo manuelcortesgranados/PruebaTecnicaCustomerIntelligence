@@ -1,7 +1,7 @@
-package com.dailycodebuffer.jwt.config;
+package com.mcg.customerintelligence.pruebatecnica.jwt.config;
 
-import com.dailycodebuffer.jwt.filter.JwtFilter;
-import com.dailycodebuffer.jwt.service.UserService;
+import com.mcg.customerintelligence.pruebatecnica.jwt.filter.JwtFilter;
+import com.mcg.customerintelligence.pruebatecnica.jwt.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
