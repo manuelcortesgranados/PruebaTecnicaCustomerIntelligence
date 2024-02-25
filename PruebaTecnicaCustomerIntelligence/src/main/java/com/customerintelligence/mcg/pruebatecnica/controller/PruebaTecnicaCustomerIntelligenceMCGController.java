@@ -122,7 +122,7 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
      * @since 25 Febrero 2024 4:20 AM GMT -5:00 Bogotá D.C. Colombia
      * @return
      */
-    @GetMapping("/todo")
+    @GetMapping("/todos")
     public ResponseEntity<List<Todo>> getTodos() {
         try {
             List<Todo> l_todos = jsonPlaceholderClient.getTodos();

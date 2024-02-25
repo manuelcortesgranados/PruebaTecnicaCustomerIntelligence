@@ -49,7 +49,7 @@ public interface JsonPlaceholderClient {
     @GetMapping("/photos")
     List<Photo> getPhotos();
 
-    @GetMapping("/todo")
+    @GetMapping("/todos")
     List<Todo> getTodos();
 
 }
