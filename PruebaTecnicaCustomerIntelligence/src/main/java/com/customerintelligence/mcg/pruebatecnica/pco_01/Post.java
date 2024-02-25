@@ -1,10 +1,4 @@
-package com.customerintelligence.mcg.pruebatecnica.pco.pco_01;
-
-/**
- * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
- * @since 24 Feberro 2024 8:00 AM -5:00 GMT Bogotá D.C. Colombia
- *
- */
+package com.customerintelligence.mcg.pruebatecnica.pco_01;
 
 public class Post {
     private Long id;
