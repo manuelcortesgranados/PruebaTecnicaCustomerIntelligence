@@ -7,6 +7,7 @@ import com.customerintelligence.mcg.pruebatecnica.model.User.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -151,6 +152,29 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
         try {
             List<User> l_users = jsonPlaceholderClient.getUsers();
             return ResponseEntity.ok(l_users);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return ResponseEntity.notFound().build();
+            }
+            // Handle other client errors
+            return ResponseEntity.status(e.getStatusCode()).body(null);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 25 Febrero 2024 6:06 PM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    @GetMapping("/posts/{id}")
+    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+        try {
+            Post post = jsonPlaceholderClient.getPostById(id);
+            return ResponseEntity.ok(post);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
                 return ResponseEntity.notFound().build();
