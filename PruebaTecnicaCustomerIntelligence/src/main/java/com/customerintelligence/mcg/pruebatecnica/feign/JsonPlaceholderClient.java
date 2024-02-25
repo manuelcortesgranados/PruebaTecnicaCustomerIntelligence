@@ -1,6 +1,7 @@
 package com.customerintelligence.mcg.pruebatecnica.feign;
 
 import com.customerintelligence.mcg.pruebatecnica.model.*;
+import com.customerintelligence.mcg.pruebatecnica.model.User.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -51,5 +52,8 @@ public interface JsonPlaceholderClient {
 
     @GetMapping("/todos")
     List<Todo> getTodos();
+
+    @GetMapping("/users")
+    List<User> getUsers();
 
 }

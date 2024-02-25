@@ -10,5 +10,4 @@ public class PruebaTecnicaCustomerIntelligenceApplication {
     public static void main(String[] args) {
         SpringApplication.run(PruebaTecnicaCustomerIntelligenceApplication.class, args);
     }
-
 }

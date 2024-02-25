@@ -3,6 +3,7 @@ package com.customerintelligence.mcg.pruebatecnica.controller;
 
 import com.customerintelligence.mcg.pruebatecnica.feign.JsonPlaceholderClient;
 import com.customerintelligence.mcg.pruebatecnica.model.*;
+import com.customerintelligence.mcg.pruebatecnica.model.User.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -127,6 +128,29 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
         try {
             List<Todo> l_todos = jsonPlaceholderClient.getTodos();
             return ResponseEntity.ok(l_todos);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return ResponseEntity.notFound().build();
+            }
+            // Handle other client errors
+            return ResponseEntity.status(e.getStatusCode()).body(null);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 25 Febrero 2024 6:40 AM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    @GetMapping("/users")
+    public ResponseEntity<List<User>> getUser() {
+        try {
+            List<User> l_users = jsonPlaceholderClient.getUsers();
+            return ResponseEntity.ok(l_users);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
                 return ResponseEntity.notFound().build();
