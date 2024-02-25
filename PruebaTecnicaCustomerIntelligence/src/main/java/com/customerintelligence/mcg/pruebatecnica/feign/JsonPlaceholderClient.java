@@ -1,5 +1,6 @@
 package com.customerintelligence.mcg.pruebatecnica.feign;
 
+import com.customerintelligence.mcg.pruebatecnica.model.Album;
 import com.customerintelligence.mcg.pruebatecnica.model.Comment;
 import com.customerintelligence.mcg.pruebatecnica.model.Post;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -43,5 +44,8 @@ public interface JsonPlaceholderClient {
 
     @GetMapping("/comments")
     List<Comment> getComments();
+
+    @GetMapping("/albums")
+    List<Album> getAlbums();
 
 }
