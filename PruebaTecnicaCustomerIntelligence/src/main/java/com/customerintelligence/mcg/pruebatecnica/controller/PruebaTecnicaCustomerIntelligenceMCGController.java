@@ -195,20 +195,39 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
      * @return
      */
     @GetMapping("/posts/{id}/comments")
-    public ResponseEntity<List<Comment>> getPostCommentsById(@PathVariable Long id) {
+    public ResponseEntity<CustomResponse<List<Comment>>> getPostCommentsById(@PathVariable Long id) {
+        CustomResponse<List<Comment>> response = new CustomResponse<>();
+        List<Comment> comments = null;
         try {
-            List<Comment> l_comments = jsonPlaceholderClient.getPostCommentsById(id);
-            return ResponseEntity.ok(l_comments);
+            comments = jsonPlaceholderClient.getPostCommentsById(id);
+            response.setSuccess(true);
+            response.setData(comments);
+            return ResponseEntity.ok(response);
         } catch (HttpClientErrorException e) {
             if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                return ResponseEntity.notFound().build();
+                response.setSuccess(false);
+                response.setErrorMessage("No comments found for post with ID: " + id);
+                System.out.println("No comments found for post with ID: " + id);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
             }
             // Handle other client errors
-            return ResponseEntity.status(e.getStatusCode()).body(null);
+            response.setSuccess(false);
+            response.setErrorMessage("Client error: " + e.getStatusCode().toString());
+            System.out.println("Client error: " + e.getStatusCode().toString());
+            return ResponseEntity.status(e.getStatusCode()).body(response);
         } catch (Exception e) {
             // Log the exception for debugging purposes
+            response.setSuccess(false);
+            response.setErrorMessage("Internal server error occurred: " + e.getMessage());
+            System.out.println("Internal server error occurred: " + e.getMessage());
             e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }finally {
+            if (comments.size()==0){
+                response.setSuccess(false);
+                response.setErrorMessage("No se encontraron comentarios con el id : " + id);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+            }
         }
     }
 
@@ -233,6 +252,34 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 26 Febrero 2024 5:03 AM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    @PutMapping("/posts/{id}")
+    public ResponseEntity<CustomResponse<Post>> updateResourcePost(@PathVariable Long id,@RequestBody Post post) {
+        CustomResponse<Post> response = new CustomResponse<>();
+        Post post1=null;
+        try {
+            post1 = jsonPlaceholderClient.updateResourcePost(id,post);
+            response.setSuccess(true);
+            response.setData(post1);
+            return ResponseEntity.ok(response);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            if (post1==null){
+                response.setSuccess(false);
+                response.setErrorMessage("No se encontraron comentarios con el id : " + id);
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+            }
+        }
+        return null;
     }
 
     /**
