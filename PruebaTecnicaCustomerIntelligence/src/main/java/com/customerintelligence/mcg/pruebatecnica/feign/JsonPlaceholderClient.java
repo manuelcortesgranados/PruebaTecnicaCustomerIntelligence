@@ -5,6 +5,8 @@ import com.customerintelligence.mcg.pruebatecnica.model.User.User;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -62,5 +64,8 @@ public interface JsonPlaceholderClient {
 
     @GetMapping("/posts/{id}/comments")
     List<Comment> getPostCommentsById(@PathVariable Long id);
+
+    @PostMapping("/posts")
+    Post createResourcePost(@RequestBody Post post);
 
 }

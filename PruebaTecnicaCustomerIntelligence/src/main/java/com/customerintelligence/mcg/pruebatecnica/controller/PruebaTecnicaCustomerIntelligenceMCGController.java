@@ -4,11 +4,11 @@ package com.customerintelligence.mcg.pruebatecnica.controller;
 import com.customerintelligence.mcg.pruebatecnica.feign.JsonPlaceholderClient;
 import com.customerintelligence.mcg.pruebatecnica.model.*;
 import com.customerintelligence.mcg.pruebatecnica.model.User.User;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
@@ -20,6 +20,9 @@ import java.util.List;
  */
 @RestController
 public class PruebaTecnicaCustomerIntelligenceMCGController {
+
+
+    private final ObjectMapper objectMapper = new ObjectMapper();
 
     private final JsonPlaceholderClient jsonPlaceholderClient;
 
@@ -171,26 +174,24 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
      * @return
      */
     @GetMapping("/posts/{id}")
-    public ResponseEntity<Post> getPostById(@PathVariable Long id) {
+    public ResponseEntity<CustomResponse<Post>> getPostById(@PathVariable Long id) {
+        CustomResponse<Post> response = new CustomResponse<>();
         try {
             Post post = jsonPlaceholderClient.getPostById(id);
-            return ResponseEntity.ok(post);
-        } catch (HttpClientErrorException e) {
-            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
-                return ResponseEntity.notFound().build();
-            }
-            // Handle other client errors
-            return ResponseEntity.status(e.getStatusCode()).body(null);
-        } catch (Exception e) {
-            // Log the exception for debugging purposes
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            response.setSuccess(true);
+            response.setData(post);
+            return ResponseEntity.ok(response);
+
+        }  catch (Exception e) {
+            response.setSuccess(false);
+            response.setErrorMessage(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
         }
     }
 
     /**
      * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
-     * @since 25 Febrero 2024 6:06 PM GMT -5:00 Bogotá D.C. Colombia
+     * @since 26 Febrero 2024 5:03 AM GMT -5:00 Bogotá D.C. Colombia
      * @return
      */
     @GetMapping("/posts/{id}/comments")
@@ -209,6 +210,38 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
+    }
+
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 26 Febrero 2024 5:03 AM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    @PostMapping("/posts")
+    public ResponseEntity<Post> createResourcePost(@RequestBody Post post) {
+        try {
+            Post post1 = jsonPlaceholderClient.createResourcePost(post);
+            return ResponseEntity.ok(post1);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return ResponseEntity.notFound().build();
+            }
+            // Handle other client errors
+            return ResponseEntity.status(e.getStatusCode()).body(null);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 26 Febrero 2024 5:37 AM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    private String convertToJson(Object object) throws JsonProcessingException {
+        return objectMapper.writeValueAsString(object);
     }
 
 }

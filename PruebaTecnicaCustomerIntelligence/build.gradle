@@ -21,6 +21,7 @@ dependencies {
     testImplementation group: 'org.junit.vintage', name: 'junit-vintage-engine', version: '5.10.2'
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation group: 'com.fasterxml', name: 'jackson-xml-databind', version: '0.6.2'
 }
 
 tasks.test {
