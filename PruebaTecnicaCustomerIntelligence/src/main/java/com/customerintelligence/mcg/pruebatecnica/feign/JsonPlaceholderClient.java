@@ -68,4 +68,10 @@ public interface JsonPlaceholderClient {
     @PutMapping("/posts/{id}")
     Post updateResourcePost(@PathVariable Long id,@RequestBody Post post);
 
+    @PatchMapping("/posts/{id}")
+    Post patchResourcePost(@PathVariable Long id,@RequestBody Post post);
+
+    @GetMapping("/albums/{id}/photos")
+    List<Photo> getPhotosByAlbum(@PathVariable Long albumId);
+
 }
