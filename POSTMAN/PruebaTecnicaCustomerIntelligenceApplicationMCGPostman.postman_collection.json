@@ -1,0 +1,212 @@
+{
+	"info": {
+		"_postman_id": "0e778c58-15b6-4515-9634-9fa23232afb5",
+		"name": "PruebaTecnicaCustomerIntelligenceApplicationMCGPostman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2403451"
+	},
+	"item": [
+		{
+			"name": "localhost:8083/posts",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/comments",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/albums",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/photos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/todos",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/users",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/posts/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/posts/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/posts/1/comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/posts/{id}",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/posts/1/comments Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Manuel Cortés Granados\",\r\n    \"body\": \"prueba body\",\r\n    \"userId\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/posts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/posts/1/comments Copy 3",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"foo\",\r\n    \"body\": \"bar\",\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/posts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/posts/1/comments Copy 4",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"foo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/posts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"posts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8083/posts/1/comments Copy 5",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"foo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/albums/1/photos",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"albums",
+						"1",
+						"photos"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
