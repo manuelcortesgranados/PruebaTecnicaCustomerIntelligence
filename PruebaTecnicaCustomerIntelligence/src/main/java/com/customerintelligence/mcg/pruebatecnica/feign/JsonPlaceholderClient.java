@@ -59,4 +59,8 @@ public interface JsonPlaceholderClient {
 
     @GetMapping("/posts/{id}")
     Post getPostById(@PathVariable Long id);
+
+    @GetMapping("/posts/{id}/comments")
+    List<Comment> getPostCommentsById(@PathVariable Long id);
+
 }

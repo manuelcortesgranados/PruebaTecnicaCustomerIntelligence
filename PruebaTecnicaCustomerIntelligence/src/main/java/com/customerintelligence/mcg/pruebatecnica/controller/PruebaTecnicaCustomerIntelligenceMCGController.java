@@ -188,4 +188,27 @@ public class PruebaTecnicaCustomerIntelligenceMCGController {
         }
     }
 
+    /**
+     * @author Manuel Cortés Granados (manuelcortesgranados@gmail.com)
+     * @since 25 Febrero 2024 6:06 PM GMT -5:00 Bogotá D.C. Colombia
+     * @return
+     */
+    @GetMapping("/posts/{id}/comments")
+    public ResponseEntity<List<Comment>> getPostCommentsById(@PathVariable Long id) {
+        try {
+            List<Comment> l_comments = jsonPlaceholderClient.getPostCommentsById(id);
+            return ResponseEntity.ok(l_comments);
+        } catch (HttpClientErrorException e) {
+            if (e.getStatusCode() == HttpStatus.NOT_FOUND) {
+                return ResponseEntity.notFound().build();
+            }
+            // Handle other client errors
+            return ResponseEntity.status(e.getStatusCode()).body(null);
+        } catch (Exception e) {
+            // Log the exception for debugging purposes
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
 }
